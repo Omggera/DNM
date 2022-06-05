@@ -47,7 +47,6 @@
             </div>
             
 
-
             <div class="col-12">
               <label for="name" class="form-label">ФИО</label>
               <input type="text" class="form-control" id="name" placeholder="Иванов Иван Иванович" value="" required="">
@@ -74,13 +73,11 @@
                 Please enter a valid email address for shipping updates.
               </div>
             </div>
-            
-
 
             <div class="col-12">
                 <div class="row">
                 <div class="col-6 col-md-4">
-                    <button type="button" class="btn btn-outline-primary btn-lg" onclick="toggle_visibility('wizard');" id="b1">Мне нужен вывоз</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="toggle_visibility('wizard'); color();" id="b1">Мне нужен вывоз</button>
                 </div>
                 <div class="col-6 col-md-4"></div>
                 <div class="col-6 col-md-4"></div>
@@ -96,6 +93,32 @@
                 }
             </script>
 
+            <script type="text/javascript">
+                var color = 'gray';
+                function change(identifier) {
+                    identifier.style.color = color;
+                    identifier.style.borderColor = color;
+                }
+            </script>
+
+            <script type="text/javascript">
+                function color() {
+                    var elem = document.querySelector('#b1');
+                    if (elem.className == 'btn btn-outline-primary btn-lg') {
+                        elem.className = 'b1';
+                        elem.className = 'btn btn-outline-secondary btn-lg';
+                        var classElem = elem.className;
+                        elem.innerHTML = this.innerHTML = 'Вывоз не нужен';
+
+                    }
+                    else if (elem.className == 'btn btn-outline-secondary btn-lg') {
+                        elem.className = 'b1';
+                        elem.className = 'btn btn-outline-primary btn-lg';
+                        var classElem = elem.className;
+                        elem.innerHTML = this.innerHTML = 'Мне нужен вывоз';
+                    }
+                }
+            </script>
 
 
             <div class="col-12" id="wizard" style="display:none;">
@@ -108,6 +131,24 @@
             </div>
 
 
+            <div class="col-12">
+                <label for="Delivery" class="form-label">Введите ШК коробок</label>
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">WB</span>
+                <form method="post">
+                    <input type="text" class="form-control" name="shtrih" placeholder="8027 4257" aria-label="" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Добавить</button>
+                </form>
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                @foreach(var shk in Model.wbCode)
+                {
+                    <p class="text-start">@shk</p>         
+                }
+            </div>
 
           <hr class="my-4">
 
@@ -129,14 +170,14 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-success btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-success btn-lg" type="submit">Создать заявку</button>
         </form>
       </div>
     </div>
   </main>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2017–2022 Company Name</p>
+    <p class="mb-1">© 2021–2022 Доставка на маркет</p>
     <ul class="list-inline">
       <li class="list-inline-item"><a href="#">Privacy</a></li>
       <li class="list-inline-item"><a href="#">Terms</a></li>
