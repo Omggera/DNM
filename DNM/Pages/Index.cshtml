@@ -1,0 +1,59 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<div class="col-6 col-md-4">
+   <button type="button" class="btn btn-outline-primary btn-lg" onclick="toggle_visibility('wizard');">Мне нужен вывоз</button>
+</div>
+
+ <div class="col-12" id="wizard">
+     <label for="name" class="form-label">Имя</label>
+     <input type="text" class="form-control" id="name" placeholder="" value="" required="">
+     <div class="invalid-feedback">
+         Valid first name is required.
+         </div>
+ </div>
+
+<script type="text/javascript">
+   function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }
+</script>
+
+
+
+
+
+<button type="button" class="btn btn-primary" id="liveAlertBtn">Показать живое уведомление</button>
+<div id="liveAlertPlaceholder"></div>
+
+<script>
+    var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+    var alertTrigger = document.getElementById('liveAlertBtn')
+
+    function alert(message, type) {
+    var wrapper = document.createElement('div')
+    wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+    alertPlaceholder.append(wrapper)
+}
+
+    if (alertTrigger) {
+        alertTrigger.addEventListener('click', function () {
+            alert('Отлично, вы запустили это предупреждающее сообщение!', 'success')
+        })
+    }
+</script>
+
